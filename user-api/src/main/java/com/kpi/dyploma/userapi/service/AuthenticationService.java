@@ -10,6 +10,9 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.NoSuchElementException;
+import java.util.Optional;
+
 @Service
 @RequiredArgsConstructor
 public class AuthenticationService {
@@ -31,6 +34,7 @@ public class AuthenticationService {
                 .build();
 
         repository.save(user);
+        LOGGER.info("User with email {} was registered!", user.getEmail());
         var jwtToken = jwtService.generateToken(user);
         return AuthenticationResponse.builder()
                 .token(jwtToken)
@@ -39,13 +43,14 @@ public class AuthenticationService {
 
     private void checkIfUserAlreadyExists(String email) {
         if (repository.findByEmail(email).isPresent()) {
-            throw new IllegalArgumentException("User with email {} already exists!");
+            throw new NoSuchElementException("User with email {} already exists!");
         }
     }
 
     public AuthenticationResponse authenticate(AuthenticationRequest request) {
-        var user = repository.findByEmail(request.getEmail())
-                .orElseThrow();
+        var user = findUserByEmail(request.getEmail()).orElseThrow();
+
+        LOGGER.info("User was found!");
 
         authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
@@ -54,8 +59,16 @@ public class AuthenticationService {
         );
 
         var jwtToken = jwtService.generateToken(user);
+
+        LOGGER.debug("Generated JWT token for user - {}. User authenticated", user);
+
         return AuthenticationResponse.builder()
                 .token(jwtToken)
                 .build();
+    }
+
+    private Optional<User> findUserByEmail(String email) {
+        LOGGER.info("Trying to find user with email - {}", email);
+        return repository.findByEmail(email);
     }
 }
