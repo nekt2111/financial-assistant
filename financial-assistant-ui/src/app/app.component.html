@@ -1,0 +1,22 @@
+<h1>Hello world!</h1>
+
+<div *ngIf="!registered; else: registeredTemplate">
+  <div>
+    <input [(ngModel)]="email">Email
+  </div>
+  <div>
+    <input [(ngModel)]="password">password
+  </div>
+  <div>
+    <input [(ngModel)]="firstname">firstname
+  </div>
+  <div>
+    <input [(ngModel)]="lastname">lastname
+  </div>
+  <button (click)="register()">Register</button>
+</div>
+
+<ng-template #registeredTemplate>
+  <div>You are registered!</div>
+  <button (click)="check()">Check!</button>
+</ng-template>
