@@ -1,0 +1,29 @@
+<div class="wrapper">
+  <div class="section-1">
+    <div class="main">
+      <input type="checkbox" id="chk" aria-hidden="true" [checked]="isLoginActive">
+
+      <div class="signup">
+        <form>
+          <label for="chk" aria-hidden="true" (click)="changeAuthProcess()">Sign up</label>
+          <input [(ngModel)]="email" type="email" name="email" placeholder="Email" required="">
+          <input [(ngModel)]="password" type="password" name="pswd" placeholder="Password" required="">
+          <button (click)="registerUser()">Sign up</button>
+          <p class="error-message" *ngIf="showErrorMessage">{{errorMessage}}</p>
+        </form>
+      </div>
+
+      <div class="login">
+        <form>
+          <label for="chk" aria-hidden="true" (click)="changeAuthProcess()">Login</label>
+          <input [(ngModel)]="email" type="email" name="email" placeholder="Email" required="">
+          <input [(ngModel)]="password" type="password" name="pswd" placeholder="Password" required="">
+          <button (click)="loginUser()">Login</button>
+          <p class="error-message" *ngIf="showErrorMessage">{{errorMessage}}</p>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="section-2">
+  </div>
+</div>

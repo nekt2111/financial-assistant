@@ -3,6 +3,8 @@ package com.kpi.dyploma.userapi.service;
 import com.kpi.dyploma.userapi.model.*;
 import com.kpi.dyploma.userapi.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -17,10 +19,12 @@ public class AuthenticationService {
     private final JwtService jwtService;
     private final AuthenticationManager authenticationManager;
 
+    private final static Logger LOGGER = LoggerFactory.getLogger(AuthenticationService.class);
+
     public AuthenticationResponse register(RegisterRequest request) {
+        checkIfUserAlreadyExists(request.getEmail());
+
         var user = User.builder()
-                .firstname(request.getFirstname())
-                .lastname(request.getLastname())
                 .email(request.getEmail())
                 .password(passwordEncoder.encode(request.getPassword()))
                 .role(Role.USER)
@@ -33,15 +37,21 @@ public class AuthenticationService {
                 .build();
     }
 
+    private void checkIfUserAlreadyExists(String email) {
+        if (repository.findByEmail(email).isPresent()) {
+            throw new IllegalArgumentException("User with email {} already exists!");
+        }
+    }
+
     public AuthenticationResponse authenticate(AuthenticationRequest request) {
+        var user = repository.findByEmail(request.getEmail())
+                .orElseThrow();
+
         authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
                         request.getEmail(),
                         request.getPassword())
         );
-
-        var user = repository.findByEmail(request.getEmail())
-                .orElseThrow();
 
         var jwtToken = jwtService.generateToken(user);
         return AuthenticationResponse.builder()

@@ -10,7 +10,8 @@ import {AuthenticationResponse} from "../models/auth/authentication-response";
   providedIn:'root'
 })
 export class AuthService {
-  private constructor(private http: HttpClient) {
+  private constructor(private http: HttpClient,
+                      private localStorageService: LocalStorageService) {
 
   }
 
@@ -19,13 +20,21 @@ export class AuthService {
   }
 
   public login(request: LoginRequest): Observable<AuthenticationResponse> {
-    return this.http.post<AuthenticationResponse>("http://localhost:8085/api/v1/auth/login", request);
+    return this.http.post<AuthenticationResponse>("http://localhost:8085/api/v1/auth/authenticate", request);
+  }
+
+  public logout(): void {
+    return this.localStorageService.removeAuthToken();
   }
 
   public checkRegistration(): Observable<string> {
     return this.http.get("http://localhost:8085/api/v1/demo-controller", {
       responseType:'text',
     });
+  }
+
+  public isUserAuthenticated(): Promise<boolean> {
+    return new Promise((resolve) => resolve(!!this.localStorageService.getAuthToken()))
   }
 
 }

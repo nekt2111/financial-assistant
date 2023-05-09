@@ -28,4 +28,8 @@ export class LocalStorageService {
   public getAuthToken(): string | null {
     return this.getData(this.AUTH_TOKEN);
   }
+
+  public removeAuthToken(): void {
+    return this.removeData(this.AUTH_TOKEN);
+  }
 }
