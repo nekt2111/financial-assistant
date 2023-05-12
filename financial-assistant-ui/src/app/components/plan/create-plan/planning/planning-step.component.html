@@ -1,0 +1,76 @@
+<div class="main-wrapper">
+  <h2 class="main-header">Крок 1 (Планування)</h2>
+  <div class="main-content">
+    <form class="main-planning-wrapper" [formGroup]="form">
+      <div class="section-1">
+        <div class="question">
+          <label class="question-text">
+            <span>Вік на дату складання розрахунку</span>
+            <img src="assets/icons/icons8-info-48.png" class="hint-icon" title="hint">
+          </label>
+          <div class="form-control">
+            <input class="question-input" formControlName="currentAge" (change)="onCurrentAgeChange($event)">
+            <span>років</span>
+          </div>
+        </div>
+        <div class="question">
+          <label class="question-text">
+            <span>Вік виходу на пенсію</span>
+            <img src="assets/icons/icons8-info-48.png" class="hint-icon" title="hint">
+          </label>
+          <div class="form-control">
+            <input class="question-input" formControlName="pensionAge" (change)="onPensionAgeChange($event)">
+            <span>років</span>
+          </div>
+        </div>
+        <div class="question">
+          <label class="question-text">Очікувана державна пенсія</label>
+          <div class="form-control">
+            <input class="question-input" formControlName="governmentPension">
+            <span>$ на рік</span>
+          </div>
+        </div>
+        <div class="question">
+          <label class="question-text">Вік закінчення розрахунку</label>
+          <div class="form-control">
+            <input class="question-input" formControlName="endAge">
+            <span>років</span>
+          </div>
+        </div>
+      </div>
+      <div class="section-2">
+        <div class="question">
+          <label class="question-text">Ваше сприйняття ризику (ризик профіль)</label>
+          <div class="form-control">
+            <select class="question-select" [(ngModel)]="planningStep.riskProfile" (ngModelChange)="onRiskProfileChange()" [ngModelOptions]="{standalone: true}">
+             <option *ngFor="let riskProfile of riskProfiles" [ngValue]="riskProfile">{{riskProfile}}</option>
+            </select>
+            <span>% втрати Капіталу</span>
+          </div>
+        </div>
+        <div class="question">
+          <label class="question-text">Темп зростання Ваших витрат </label>
+          <div>
+            <input class="question-input" formControlName="paceOfIncreaseExpense">
+            <span>% в рік</span>
+          </div>
+        </div>
+        <div class="question">
+          <label class="question-text">Темп зростання Ваших Активних доходів </label>
+          <div>
+            <input class="question-input" formControlName="paceOfIncreaseIncome">
+            <span>% в рік</span>
+          </div>
+        </div>
+        <div class="question">
+          <label class="question-text">Середньозважена дохідність Капіталу відповідно до Вашого ризик-профілю</label>
+          <div>
+            <input class="question-input" disabled [value]="planningStep.mediumIncomeOfPortfolio">
+            <span>% в рік</span>
+          </div>
+        </div>
+      </div>
+    </form>
+    <div class="step next"><span class="step-text" (click)="goToNextStep()" [class.disabled]="!form.valid">Наступний крок -></span></div>
+  </div>
+</div>

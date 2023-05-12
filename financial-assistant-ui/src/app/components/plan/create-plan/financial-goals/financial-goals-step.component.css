@@ -1,0 +1,58 @@
+.main-planning-wrapper {
+  display: grid;
+  grid-template: 1fr/1fr;
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.main-wrapper {
+  margin: 20px;
+  height: 100%;
+  display: grid;
+  grid-template: 0.1fr 0.1fr 1fr/1fr
+}
+
+.question.one-section {
+  width: 480px;
+}
+
+.add-financial-goal {
+  text-align: right;
+  font-size: 25px;
+  padding-right: 40px;
+  color: green;
+  font-weight: bold;
+}
+
+.small-icon {
+  width: 15px;
+  height: 15px;
+  cursor: pointer;
+}
+
+input.ng-invalid.ng-touched {
+  border: 1px solid black;
+}
+
+input.ng-valid.ng-touched {
+  border: 1px solid black;
+}
+
+.add-financial-goal {
+  margin-left: 65%;
+  display: grid;
+  grid-template: 1fr/1fr 1fr;
+}
+
+.add-financial-goal-text {
+  cursor: pointer;
+}
+
+.error-message {
+  font-size: 11px;
+}

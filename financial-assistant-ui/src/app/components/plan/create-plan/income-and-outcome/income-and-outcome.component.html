@@ -1,0 +1,45 @@
+<div class="main-wrapper">
+  <h2 class="main-header">Крок 2 (Доходи та витрати)</h2>
+  <div class="main-content">
+    <div class="main-planning-wrapper one-section">
+      <form class="section" [formGroup]="form">
+        <div class="question one-section">
+          <label class="question-text">
+            <span>Активні доходи</span>
+          </label>
+          <div>
+            <input class="question-input" formControlName="activeIncome">
+            <span>$ на рік</span>
+          </div>
+        </div>
+        <div class="question one-section">
+          <label class="question-text">
+            <span>Пасивні доходи</span>
+          </label>
+          <div>
+            <input class="question-input" formControlName="passiveIncome">
+            <span>$ на рік</span>
+          </div>
+        </div>
+        <div class="question one-section">
+          <label class="question-text">Поточні витрати</label>
+          <div class="form-control">
+            <input class="question-input" formControlName="activeOutcome">
+            <span>$ на рік</span>
+          </div>
+        </div>
+        <div class="question one-section">
+          <label class="question-text">Додаткові витрати</label>
+          <div>
+            <input class="question-input" formControlName="additionalOutcome">
+            <span>$ на рік</span>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="steps">
+      <div class="step previous"><span class="step-text" (click)="goToPreviousStep()"><- Попередній крок</span></div>
+      <div class="step next"><span class="step-text" (click)="goToNextStep()" [class.disabled]="!form.valid">Наступний крок -></span></div>
+    </div>
+  </div>
+</div>

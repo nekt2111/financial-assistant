@@ -1,0 +1,108 @@
+.main-wrapper {
+  margin: 20px;
+  height: 100%;
+  display: grid;
+  grid-template: 0.1fr 1fr/1fr
+}
+
+.main-header {
+  font-size: 30px;
+  border-bottom: 1px solid
+}
+
+.main-planning-wrapper {
+  margin: 30px 30px 20px 30px;
+  background-color: white;
+  display: grid;
+  grid-template: 1fr/ 1fr 1fr;
+  grid-gap: 100px;
+  padding: 30px;
+  font-size: 20px;
+  border-radius: 10px;
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.section-1 {
+  border-right: 1px dashed;
+}
+
+.steps {
+  display: grid;
+  grid-template: 1fr/1fr 1fr;
+}
+
+.step {
+  font-size: 30px;
+  margin-right: 30px;
+  font-style: italic;
+  font-weight: bold;
+}
+
+.step.previous {
+  text-align: left;
+}
+
+.step.next {
+  text-align: right;
+}
+
+.step-text.disabled {
+  cursor: not-allowed;
+  color: darkgray;
+  transition: 1s;
+}
+
+.step-text {
+  cursor: pointer;
+  transition: 1s;
+  color: deepskyblue;
+}
+
+.question {
+  display: grid;
+  grid-template: 1fr/ 1fr 1fr;
+  margin-bottom: 80px;
+}
+
+.question-select {
+  max-width: 150px;
+  margin-right: 8px;
+  font-size: 18px;
+}
+
+.question-input {
+  max-width: 150px;
+  max-height: 30px;
+  border-radius: 5px;
+  font-size: 18px;
+  padding: 5px;
+  border: 1px solid;
+  margin-right: 8px
+}
+
+.hint-icon {
+  display: inline;
+  height: 30px;
+  width: 30px;
+}
+
+input.ng-invalid.ng-touched {
+  border: 2px solid red;
+}
+
+input.ng-valid.ng-touched {
+  border: 2px solid green;
+}
+
+
+.error-message {
+  color: red;
+  margin-top: 2px;
+}

@@ -1,1 +1,44 @@
-<router-outlet></router-outlet>
+<div class="wrapper">
+    <header *ngIf="!isLoginPage()">
+      <div class="header-wrapper">
+        <h2>
+        <span class="header-title">
+        Financial Assistant
+          </span>
+        </h2>
+        <div class="header-navigation">
+          <div class="navigation-home">
+          <span class="navigation-element" routerLink="/home">
+             Home
+            </span>
+          </div>
+          <div class="navigation-plan">
+          <span class="navigation-element" routerLink="/plan">
+            Plan
+          </span>
+          </div>
+          <div class="navigation-portfolio" routerLink="/portfolio">
+          <span class="navigation-element">
+            Portfolio
+          </span>
+          </div>
+          <div class="navigation-tax" routerLink="/tax">
+          <span class="navigation-element">
+            Tax
+          </span>
+          </div>
+        </div>
+        <div class="header-logout" (click)="logout()">
+          <img src="/assets/icons/icons8-logout-50.png" class="small-icon">
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <router-outlet></router-outlet>
+    </main>
+
+    <footer *ngIf="!isLoginPage()">
+      2023
+    </footer>
+  </div>

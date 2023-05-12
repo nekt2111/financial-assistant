@@ -28,7 +28,7 @@ export class AuthPageComponent implements OnInit {
   public ngOnInit(): void {
     this.authService.isUserAuthenticated().then((isUserAuthenticated) => {
       if (isUserAuthenticated) {
-        this.router.navigate(['/home']);
+        this.router.navigate(['']);
       }
     })
 
@@ -67,7 +67,7 @@ export class AuthPageComponent implements OnInit {
     request.password = this.password;
     this.authService.login(request).subscribe(response => {
       this.localStorageService.saveAuthToken(response.token);
-      this.router.navigate(['home']);
+      this.router.navigate(['']);
     }, (error) => {
       this.handleLoginError(error)
     });

@@ -1,0 +1,26 @@
+.main-wrapper {
+  margin: 20px;
+  height: 100%;
+}
+
+.main-content {
+
+}
+
+.main-header {
+  font-size: 30px;
+  border-bottom: 1px solid
+}
+
+.create-plan {
+  font-size: 40px;
+  border: 1px dashed;
+  padding: 10px 20px;
+  color: #0a58ca;
+  cursor: pointer;
+}
+
+.create-plan-plus {
+  font-size: 50px;
+  margin-right: 5px;
+}

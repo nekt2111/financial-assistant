@@ -1,0 +1,37 @@
+<div class="main-wrapper">
+  <h2 class="main-header">Крок 3 (Фінансові цілі)</h2>
+  <div class="add-financial-goal">
+    <div>
+    <input style="margin-right: 15px; width: 300px; max-width: 300px" class="question-input" placeholder="Назва цілі" [(ngModel)]="newFinancialGoalName">
+      <small *ngIf="shouldShowErrorMessageForNewName()" class="error-message">Неправильне значення</small>
+    </div>
+    <div class="add-financial-goal-text" (click)="addFinancialGoal()">Додати фінасову ціль</div>
+  </div>
+  <div class="main-content">
+    <div class="main-planning-wrapper one-section">
+      <div class="section">
+        <div class="question one-section" *ngFor="let goal of financialGoals; let i = index">
+          <label class="question-text">
+            <span>{{goal.name}}</span>
+            <span *ngIf="i !== 0 && i !== 1">
+            <span style="margin-left: 5px">
+              <img src="assets/icons/icons8-delete-50.png" class="small-icon" (click)="removeFinancialGoal(i)">
+            </span>
+              </span>
+          </label>
+          <div>
+            <input class="question-input" value="{{goal.amountOfMoney}}" [(ngModel)]="goal.amountOfMoney">
+            <span>$</span>
+          </div>
+          <small *ngIf="shouldShowErrorMessageForAmountOfMoney(goal)" class="error-message">
+            Неправильне значення
+          </small>
+        </div>
+      </div>
+    </div>
+    <div class="steps">
+      <div class="step previous"><span class="step-text" (click)="goToPreviousStep()"><- Попередній крок</span></div>
+      <div class="step next"><span class="step-text" (click)="!isFormInvalid() ? goToNextStep() : ''" [class.disabled]="isFormInvalid()">Наступний крок -></span></div>
+    </div>
+  </div>
+</div>
