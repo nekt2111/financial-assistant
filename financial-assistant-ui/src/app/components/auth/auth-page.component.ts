@@ -5,6 +5,7 @@ import {RegisterRequest} from "../../models/auth/register-request";
 import {LoginRequest} from "../../models/auth/login-request";
 import {LocalStorageService} from "../../services/local-storage.service";
 import {HttpErrorResponse, HttpStatusCode} from "@angular/common/http";
+import {UserService} from "../../services/user.service";
 
 @Component({
   selector: 'app-login-page',
@@ -22,7 +23,8 @@ export class AuthPageComponent implements OnInit {
 
   constructor(private router: Router,
               private authService: AuthService,
-              private localStorageService: LocalStorageService) {
+              private localStorageService: LocalStorageService,
+              private userService: UserService) {
   }
 
   public ngOnInit(): void {
@@ -44,7 +46,8 @@ export class AuthPageComponent implements OnInit {
     request.password = this.password;
     this.authService.register(request).subscribe((response) => {
       this.localStorageService.saveAuthToken(response.token);
-      this.router.navigate(['home']);
+      this.setUserByToken(response.token);
+      this.router.navigate(['']);
     }, (error: HttpErrorResponse) => {
       this.handleRegistrationError(error);
     });
@@ -67,10 +70,16 @@ export class AuthPageComponent implements OnInit {
     request.password = this.password;
     this.authService.login(request).subscribe(response => {
       this.localStorageService.saveAuthToken(response.token);
+      this.setUserByToken(response.token);
       this.router.navigate(['']);
     }, (error) => {
       this.handleLoginError(error)
     });
+  }
+
+  private setUserByToken(token: any): void {
+    const user = this.userService.buildUserFromToken(token);
+    this.userService.setUser(user);
   }
 
   private handleLoginError(error: HttpErrorResponse): void {

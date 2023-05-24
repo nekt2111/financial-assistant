@@ -7,11 +7,13 @@ import {PlanComponent} from "./components/plan/plan.component";
 import {PortfolioComponent} from "./components/portfolio/portfolio.component";
 import {TaxComponent} from "./components/tax/tax.component";
 import {CreatePlanComponent} from "./components/plan/create-plan/create-plan.component";
+import {PlanOverviewComponent} from "./components/plan/overview/plan-overview.component";
 
 const routes: Routes = [
   {path: 'auth', component: AuthPageComponent},
   {path: '', component: HomeComponent, canActivate: [AuthGuard]},
   {path: 'plan', component: PlanComponent, canActivate: [AuthGuard]},
+  {path: 'plan/:id', component: PlanOverviewComponent, canActivate: [AuthGuard]},
   {path: 'portfolio', component: PortfolioComponent, canActivate: [AuthGuard]},
   {path: 'tax', component: TaxComponent, canActivate: [AuthGuard]},
   {path: 'create-plan', component: CreatePlanComponent, canActivate: [AuthGuard]}

@@ -1,0 +1,8 @@
+.main-planning-wrapper {
+  display: grid;
+  grid-template: 1fr/1fr;
+}
+
+.question.one-section {
+  width: 500px;
+}

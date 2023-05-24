@@ -1,6 +1,12 @@
 <ng-container [ngSwitch]="currentStatus">
   <app-planning-step *ngSwitchCase="CreationStatus.PLANNING" [planningStep]="createPlanRequest.planningStep" (nextStepEmitter)="onNextStep()"></app-planning-step>
   <app-income-and-outcome-step *ngSwitchCase="CreationStatus.INCOME_AND_OUTCOME" [incomeAndOutcomeStep]="createPlanRequest.incomeAndOutcomeStep" (nextStepEmitter)="onNextStep()" (previousStepEmitter)="onPreviousStep()"></app-income-and-outcome-step>
-  <app-financial-goals-step *ngSwitchCase="CreationStatus.FINANCIAL_GOALS" [financialGoals]="createPlanRequest.financialGoals" (nextStepEmitter)="onNextStep()" (previousStepEmitter)="onPreviousStep()"></app-financial-goals-step>
+  <app-financial-goals-step *ngSwitchCase="CreationStatus.FINANCIAL_GOALS" [financialGoals]="createPlanRequest.financialGoals"
+                            [currentAge]="createPlanRequest.planningStep.currentAge"
+                            [pensionAge]="createPlanRequest.planningStep.pensionAge"
+                            [activeOutcome]="createPlanRequest.incomeAndOutcomeStep.activeOutcome"
+                            [activeAndAdditionalOutcome]="createPlanRequest.incomeAndOutcomeStep.activeOutcome + createPlanRequest.incomeAndOutcomeStep.additionalOutcome"
+                            (nextStepEmitter)="onNextStep()" (previousStepEmitter)="onPreviousStep()"></app-financial-goals-step>
+  <app-assets-and-liabilities-step *ngSwitchCase="CreationStatus.ASSETS_AND_LIABILITIES" (createPlanEmitter)="createPlan()" (previousStepEmitter)="onPreviousStep()" [assetsAndLiabilities]="createPlanRequest.assetsAndLiabilities"></app-assets-and-liabilities-step>
 </ng-container>
 

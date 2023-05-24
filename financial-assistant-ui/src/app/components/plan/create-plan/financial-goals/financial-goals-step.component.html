@@ -19,9 +19,11 @@
             </span>
               </span>
           </label>
-          <div>
+          <div class="financial-goal-input">
             <input class="question-input" value="{{goal.amountOfMoney}}" [(ngModel)]="goal.amountOfMoney">
             <span>$</span>
+            <input class="question-input" value="{{goal.achieveAge}}" [(ngModel)]="goal.achieveAge" style="margin-left: 40px">
+            <span>вік</span>
           </div>
           <small *ngIf="shouldShowErrorMessageForAmountOfMoney(goal)" class="error-message">
             Неправильне значення
@@ -31,7 +33,7 @@
     </div>
     <div class="steps">
       <div class="step previous"><span class="step-text" (click)="goToPreviousStep()"><- Попередній крок</span></div>
-      <div class="step next"><span class="step-text" (click)="!isFormInvalid() ? goToNextStep() : ''" [class.disabled]="isFormInvalid()">Наступний крок -></span></div>
+      <div class="step next"><span class="step-text" (click)="goToNextStep()" [class.disabled]="isFormInvalid()">Наступний крок -></span></div>
     </div>
   </div>
 </div>

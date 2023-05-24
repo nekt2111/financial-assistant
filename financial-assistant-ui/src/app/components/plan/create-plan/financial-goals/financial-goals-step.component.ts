@@ -1,5 +1,6 @@
 import {Component, EventEmitter, Input, OnInit, Output} from "@angular/core";
 import {FinancialGoal} from "../../../../models/plan/create/financial-goal";
+import {PlanningStep} from "../../../../models/plan/create/planning-step";
 
 @Component({
   selector: 'app-financial-goals-step',
@@ -11,6 +12,18 @@ export class FinancialGoalsStepComponent implements OnInit {
   @Input()
   public financialGoals: FinancialGoal[];
 
+  @Input()
+  public currentAge: number;
+
+  @Input()
+  public pensionAge: number;
+
+  @Input()
+  public activeAndAdditionalOutcome: number;
+
+  @Input()
+  public activeOutcome: number;
+
   public newFinancialGoalName: string;
 
   constructor() {
@@ -21,6 +34,17 @@ export class FinancialGoalsStepComponent implements OnInit {
 
   @Output()
   public previousStepEmitter = new EventEmitter();
+
+  public ngOnInit(): void {
+    this.setUpBasicFinancialGoals();
+  }
+
+  public setUpBasicFinancialGoals(): void {
+    this.financialGoals[0].achieveAge = this.pensionAge;
+    this.financialGoals[0].amountOfMoney = this.activeAndAdditionalOutcome;
+    this.financialGoals[1].achieveAge = this.currentAge;
+    this.financialGoals[1].amountOfMoney = this.activeOutcome / 2;
+  }
 
 
   public goToNextStep(): void {
@@ -67,7 +91,5 @@ export class FinancialGoalsStepComponent implements OnInit {
 
   public isNewGoalNameValid(): boolean {
     return this.newFinancialGoalName.length > 2 && this.newFinancialGoalName.length < 21;
-  }
-  ngOnInit(): void {
   }
 }

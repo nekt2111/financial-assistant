@@ -1,0 +1,27 @@
+<h2 style="text-align: center">Портфель</h2>
+<div class="plan-portfolio-wrapper">
+  <div class="portfolio-chart">
+    <div echarts [options]="portfolioChartOptions" class="demo-chart"></div>
+  </div>
+  <div class="portfolio-overview">
+    <div class="portfolio-prename">Найкращий портфель для вас:</div>
+    <div class="portfolio-name"><strong>{{portfolio.name}}</strong></div>
+    <div>Активи портфелю:</div>
+    <div class="portfolio-assets">
+      <div class="portfolio-asset">
+        <div class="asset-name">Ім'я</div>
+        <div class="asset-ticker">Тікер</div>
+        <div class="asset-weight">Процент портфелю</div>
+      </div>
+      <div class="portfolio-asset" *ngFor="let asset of portfolio.assets">
+        <div class="asset-name">{{asset.name}}</div>
+        <div class="asset-ticker">{{asset.ticker}}</div>
+        <div class="asset-weight">{{asset.weight}}</div>
+      </div>
+    </div>
+    <div class="portfolio-historic-annual-return">
+      <div>Історичний cкладений річний дохід портфелю скаладає {{portfolio.historicalCompoundAnnualReturn}}%</div>
+    </div>
+  </div>
+</div>
+

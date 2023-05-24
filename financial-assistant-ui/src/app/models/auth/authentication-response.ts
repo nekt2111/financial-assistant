@@ -1,3 +1,3 @@
 export class AuthenticationResponse {
-  public token: string;
+  public token: any;
 }

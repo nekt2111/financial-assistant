@@ -10,6 +10,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
@@ -58,7 +59,10 @@ public class AuthenticationService {
                         request.getPassword())
         );
 
-        var jwtToken = jwtService.generateToken(user);
+        HashMap<String, Object> map = new HashMap<>();
+        map.put("id", user.getId());
+
+        var jwtToken = jwtService.generateToken(map, user);
 
         LOGGER.debug("Generated JWT token for user - {}. User authenticated", user);
 

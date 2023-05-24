@@ -1,0 +1,45 @@
+<div class="main-wrapper">
+  <h2 class="main-header">Крок 4 (Ващі заощадження)</h2>
+  <div class="main-content">
+    <div class="main-planning-wrapper one-section">
+      <form class="section" [formGroup]="form">
+        <div class="question one-section">
+          <label class="question-text">
+            <span>Грошові інструменти</span>
+          </label>
+          <div>
+            <input class="question-input" formControlName="monetaryInstruments">
+            <span>$</span>
+          </div>
+        </div>
+        <div class="question one-section">
+          <label class="question-text">
+            <span>Цінні папери</span>
+          </label>
+          <div>
+            <input class="question-input" formControlName="securities">
+            <span>$</span>
+          </div>
+        </div>
+        <div class="question one-section">
+          <label class="question-text">Нерухомість</label>
+          <div class="form-control">
+            <input class="question-input" formControlName="realEstate">
+            <span>$</span>
+          </div>
+        </div>
+        <div class="question one-section">
+          <label class="question-text">Інше</label>
+          <div>
+            <input class="question-input" formControlName="other">
+            <span>$</span>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="steps">
+      <div class="step previous"><span class="step-text" (click)="goToPreviousStep()"><- Попередній крок</span></div>
+      <div class="step next"><span class="step-text" (click)="createPlan()" [class.disabled]="!form.valid">Створити план -></span></div>
+    </div>
+  </div>
+</div>

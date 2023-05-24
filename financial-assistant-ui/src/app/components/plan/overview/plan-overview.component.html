@@ -1,0 +1,20 @@
+<div class="main-wrapper">
+  <div class="overview-section">
+    <ng-container [ngSwitch]="currentSection">
+      <app-plan-visualization *ngSwitchCase="overviewSections.VISUALIZATION" [planRepresentation]="planRepresentation"></app-plan-visualization>
+      <app-plan-portfolio *ngSwitchCase="overviewSections.PORTFOLIO" [portfolio]="planRepresentation.financialPlan.portfolio"></app-plan-portfolio>
+      <app-living-capital *ngSwitchCase="overviewSections.LIVING_CAPITAL" [lifeCapital]="planRepresentation.capitalRepresentation"></app-living-capital>
+      <app-plan-review *ngSwitchCase="overviewSections.REVIEW"></app-plan-review>
+    </ng-container>
+  </div>
+  <div class="overview-selection" >
+    <div class="selection" [ngClass]="currentSection===overviewSections.VISUALIZATION ? 'selected' : ''"
+         (click)="changeSection(overviewSections.VISUALIZATION)"></div>
+    <div class="selection" [ngClass]="currentSection===overviewSections.PORTFOLIO ? 'selected' : ''"
+         (click)="changeSection(overviewSections.PORTFOLIO)"></div>
+    <div class="selection" [ngClass]="currentSection===overviewSections.LIVING_CAPITAL ? 'selected' : ''"
+         (click)="changeSection(overviewSections.LIVING_CAPITAL)"></div>
+    <div class="selection" [ngClass]="currentSection===overviewSections.REVIEW ? 'selected' : ''"
+         (click)="changeSection(overviewSections.REVIEW)"></div>
+  </div>
+</div>

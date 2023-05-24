@@ -16,7 +16,7 @@ export class CreationStatusUtils {
       case 2:
         return CreationStatus.FINANCIAL_GOALS;
       case 3:
-        return CreationStatus.INCOME_AND_OUTCOME;
+        return CreationStatus.ASSETS_AND_LIABILITIES;
       case 4:
         return CreationStatus.COMPLETE;
       default:

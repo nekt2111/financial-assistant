@@ -1,3 +1,19 @@
+
+
 <div class="main-wrapper">
+  <h2 class="main-header">Your financial plan</h2>
+  <div class="main-content">
+          <span class="create-plan" (click)="navigateToCreatePlan()">
+            <span class="create-plan-plus">+</span> <span class="create-plan-text">Create plan</span>
+          </span>
     <app-no-plan *ngIf="!planExists"></app-no-plan>
+    <div *ngIf="planExists" class="plans-overview">
+      <div *ngFor="let summary of financialPlansSummaries" (click)="navigateToPlan(summary.id)" class="plan-summary">
+        {{summary.name}}
+        <span style="margin-left: 5px">
+              <img src="assets/icons/icons8-delete-50.png" class="small-icon" (click)="deletePlan(summary.id)">
+            </span>
+      </div>
+    </div>
   </div>
+</div>

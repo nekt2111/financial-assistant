@@ -1,0 +1,42 @@
+.living-capital-wrapper {
+  display: grid;
+  grid-template: 1fr/0.8fr 1fr;
+}
+
+.table-headers {
+  display: grid;
+  grid-template: 1fr/0.2fr 0.5fr 1fr 1fr 0.5fr 0.5fr;
+  text-align: center;
+}
+
+.positive-balance {
+  color: green;
+}
+
+.negative-balance {
+  color: red;
+}
+
+.living-capital-age-table {
+  display: grid;
+  grid-template: 0.2fr 1fr/1fr;
+  grid-gap: 10px;
+}
+
+.age-capital {
+  display: grid;
+  grid-template: 1fr/0.2fr 0.5fr 1fr 1fr 0.5fr 0.5fr;
+  align-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.living-capital-age-table {
+  max-height: 700px;
+  overflow-y: scroll;
+  max-width: 1000px;
+}
+
+.living-capital-all-time-data {
+
+}

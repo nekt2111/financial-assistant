@@ -1,0 +1,24 @@
+<h2 style="text-align: center">Прогнозований капітал</h2>
+<div class="living-capital-wrapper">
+  <div class="living-capital-all-time-data"></div>
+  <div class="living-capital-age-table">
+    <div class="table-headers">
+      <div class="capital-age">Вік</div>
+      <div class="capital-income">Доходи</div>
+      <div class="capital-outcome">Поточні та додаткові витрати</div>
+      <div class="capital-fingoals-outcome">Витрати на фінасові цілі</div>
+      <div class="capital-free-money">Вільні кошти</div>
+      <div class="capital-invest-cost">Заощадження</div>
+    </div>
+    <div class="table-data">
+      <div *ngFor="let ageCapital of lifeCapital.ageCapitalRepresentationList" class="age-capital">
+        <div class="capital-age">{{ageCapital.age}}</div>
+        <div class="capital-income positive-balance">{{ageCapital.income}}</div>
+        <div class="capital-outcome" [ngClass]="ageCapital.activeAndAdditionOutcome > 0 ? 'negative-balance': ''"><span *ngIf="ageCapital.activeAndAdditionOutcome > 0">-</span>{{ageCapital.activeAndAdditionOutcome}}</div>
+        <div class="capital-fingoals-outcome" [ngClass]="ageCapital.financialGoalsOutcome > 0 ? 'negative-balance': ''"><span *ngIf="ageCapital.financialGoalsOutcome > 0">-</span>{{ageCapital.financialGoalsOutcome}}</div>
+        <div class="capital-free-money" [ngClass]="ageCapital.freeMoney >= 0 ? 'positive-balance' : 'negative-balance'">{{ageCapital.freeMoney}}</div>
+        <div class="capital-invest-cost"><strong>{{ageCapital.investCost}}</strong></div>
+      </div>
+    </div>
+    </div>
+  </div>

@@ -1,0 +1,25 @@
+.plan-portfolio-wrapper {
+  display: grid;
+  grid-template: 1fr/0.8fr 1fr;
+  margin-top: 40px;
+  font-size: 20px;
+}
+
+.portfolio-asset {
+  display: grid;
+  grid-template: 1fr/1fr 1fr 1fr 1fr;
+  grid-gap: 15px;
+}
+
+.portfolio-overview {
+  display: grid;
+  grid-template: 1fr 1fr 1fr/1fr;
+}
+
+.portfolio-historic-annual-return {
+  margin-top: 40px;
+}
+
+.portfolio-name {
+  font-size: 26px;
+}

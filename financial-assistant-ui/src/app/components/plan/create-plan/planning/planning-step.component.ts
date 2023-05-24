@@ -68,14 +68,20 @@ export class PlanningStepComponent implements OnInit {
   }
 
   private setDefaultValues(planningStep: PlanningStep): void {
+    planningStep.planName = 'Мій фінансовий план'
     planningStep.paceOfIncreaseIncome = 2.4;
     planningStep.paceOfIncreaseExpense = 2.4;
     planningStep.riskProfile = this.DEFAULT_RISK_PROFILE;
     planningStep.mediumIncomeOfPortfolio = this.getMediumIncomeOfPortfolioByRiskProfile(this.DEFAULT_RISK_PROFILE);
+    planningStep.governmentPension = 1400;
   }
 
   private buildFormGroupForPlanningStep(): FormGroup {
     return new FormGroup({
+        planName: new FormControl(this.planningStep.planName, [
+          Validators.required,
+          Validators.minLength(3)
+        ]),
         currentAge: new FormControl(this.planningStep.currentAge, [
           Validators.min(0),
           Validators.max(100),
@@ -107,6 +113,7 @@ export class PlanningStepComponent implements OnInit {
   }
 
   private setPlanningStepWithFormValues(): void {
+    this.planningStep.planName = this.form.controls['planName'].value;
     this.planningStep.governmentPension = +this.form.controls['governmentPension'].value;
     this.planningStep.endAge = +this.form.controls['endAge'].value;
     this.planningStep.paceOfIncreaseExpense = +this.form.controls['paceOfIncreaseExpense'].value;

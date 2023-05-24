@@ -1,4 +1,5 @@
 import {Injectable} from "@angular/core";
+import {User} from "../models/user";
 
 @Injectable({
   providedIn: 'root'
@@ -6,13 +7,19 @@ import {Injectable} from "@angular/core";
 export class LocalStorageService {
 
   private readonly AUTH_TOKEN = 'authToken';
+  private readonly USER = 'user';
 
   constructor() { }
   public saveData(key: string, value: string) {
     localStorage.setItem(key, value);
   }
-  public getData(key: string) {
-    return localStorage.getItem(key)
+  public getData(key: string): string {
+    const value = localStorage.getItem(key);
+    if (value) {
+      return value;
+    } else {
+      return '';
+    }
   }
   public removeData(key: string) {
     localStorage.removeItem(key);
@@ -32,4 +39,13 @@ export class LocalStorageService {
   public removeAuthToken(): void {
     return this.removeData(this.AUTH_TOKEN);
   }
+
+  public saveUser(user: User): void {
+    return this.saveData(this.USER, JSON.stringify(user));
+  }
+
+  public getUser(): User {
+    return JSON.parse(this.getData(this.USER));
+  }
+
 }

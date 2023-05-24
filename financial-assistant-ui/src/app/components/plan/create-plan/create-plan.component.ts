@@ -5,6 +5,9 @@ import {PlanningStep} from "../../../models/plan/create/planning-step";
 import {CreationStatus, CreationStatusUtils} from "../../../models/plan/create/creation-status";
 import {IncomeAndOutcomeStep} from "../../../models/plan/create/income-and-outcome-step";
 import {FinancialGoal} from "../../../models/plan/create/financial-goal";
+import {AssetsAndLiabilities} from "../../../models/plan/create/assets-and-liabilities";
+import {PlanService} from "../../../services/plan.service";
+import {Router} from "@angular/router";
 
 
 @Component({
@@ -13,7 +16,8 @@ import {FinancialGoal} from "../../../models/plan/create/financial-goal";
   styleUrls: ['./create-plan.component.css']
 })
 export class CreatePlanComponent implements OnInit {
-  constructor() { }
+  constructor(private planService: PlanService,
+              private router: Router) { }
 
   public currentStatus: CreationStatus;
   public createPlanRequest: CreatePlanRequest;
@@ -30,6 +34,7 @@ export class CreatePlanComponent implements OnInit {
     this.createPlanRequest.planningStep = new PlanningStep();
     this.createPlanRequest.financialGoals = this.getDefaultFinancialGoals();
     this.createPlanRequest.incomeAndOutcomeStep = new IncomeAndOutcomeStep();
+    this.createPlanRequest.assetsAndLiabilities = new AssetsAndLiabilities();
   }
 
   public onNextStep(): void {
@@ -40,6 +45,13 @@ export class CreatePlanComponent implements OnInit {
   public onPreviousStep(): void {
     this.currentStatus = this.getPreviousStep(this.currentStatus);
     console.log(this.createPlanRequest)
+  }
+
+  public createPlan(): void {
+    this.planService.createPlan(this.createPlanRequest).subscribe((result) => {
+      console.log(result)
+      this.router.navigate([`plan/${result.financialPlan.id}`])
+    });
   }
 
   private getNextStep(status: CreationStatus): CreationStatus {
@@ -53,11 +65,11 @@ export class CreatePlanComponent implements OnInit {
   }
 
   private getDefaultFinancialGoals(): FinancialGoal[] {
-    const reserveFund = new FinancialGoal('Резервний фонд');
     const financialFreedom = new FinancialGoal('Фінансова свобода');
+    const reserveFund = new FinancialGoal('Резервний фонд');
     const appartement = new FinancialGoal('Житло');
     const car = new FinancialGoal('Авто');
-    return [reserveFund, financialFreedom, appartement, car];
+    return [financialFreedom, reserveFund, appartement, car];
   }
 
 

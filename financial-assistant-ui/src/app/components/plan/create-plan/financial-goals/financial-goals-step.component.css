@@ -18,7 +18,7 @@
 }
 
 .question.one-section {
-  width: 480px;
+  width: 600px;
 }
 
 .add-financial-goal {
@@ -51,6 +51,11 @@ input.ng-valid.ng-touched {
 
 .add-financial-goal-text {
   cursor: pointer;
+}
+
+.financial-goal-input {
+  display: grid;
+  grid-template: 1fr/ 1fr 1fr 1fr 1fr;
 }
 
 .error-message {

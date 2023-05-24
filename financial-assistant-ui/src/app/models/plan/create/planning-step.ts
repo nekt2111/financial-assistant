@@ -1,4 +1,5 @@
 export class PlanningStep {
+  public planName: string;
   public currentAge: number;
   public pensionAge: number;
   public governmentPension: number;
